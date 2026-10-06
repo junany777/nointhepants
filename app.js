@@ -12,10 +12,8 @@ function selectPlace(name, item) { document.querySelectorAll('.restroom-item').f
 function bindRestroomInteractions() { document.querySelectorAll('.restroom-item').forEach((item) => item.addEventListener('click', () => selectPlace(item.dataset.place, item))); document.querySelectorAll('.toilet-pin').forEach((pin) => pin.addEventListener('click', () => { selectedPlace = pin.dataset.name; toast(`${selectedPlace} · 길 안내 준비 완료`); })); }
 bindRestroomInteractions();
 
-$('#routeButton').addEventListener('click', openNaverRestroomSearch);
-function openNaverRestroomSearch(){ window.open('https://map.naver.com/p/search/%ED%99%94%EC%9E%A5%EC%8B%A4', '_blank', 'noopener,noreferrer'); toast('네이버 지도에서 주변 화장실 검색을 열었어요.'); }
+function openNaverRestroomSearch(){ window.open('https://map.naver.com/p/search/%EA%B0%9C%EB%B0%A9%ED%99%94%EC%9E%A5%EC%8B%A4', '_blank', 'noopener,noreferrer'); toast('네이버 지도에서 개방화장실 검색을 열었어요.'); }
 $('#refreshButton').addEventListener('click', openNaverRestroomSearch);
-$('#mapLaunchButton')?.addEventListener('click', openNaverRestroomSearch);
 document.querySelectorAll('.text-button').forEach((button) => button.addEventListener('click', () => toast(button.dataset.toast)));
 
 let breathing = false;
