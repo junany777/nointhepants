@@ -12,18 +12,20 @@ function bindRestroomInteractions() { document.querySelectorAll('.restroom-item'
 bindRestroomInteractions();
 
 $('#routeButton').addEventListener('click', () => { if (!selectedPlace) return toast('먼저 화장실을 선택해 주세요.'); toast(`${selectedPlace}까지 길 안내를 시작합니다.`); });
-$('#refreshButton').addEventListener('click', () => { if (currentCoords) return searchNearbyRestrooms(currentCoords, true); toast('먼저 “내 위치로 화장실 찾기”를 눌러 주세요.'); });
+$('#refreshButton').addEventListener('click', locateAndSearch);
 document.querySelectorAll('.text-button').forEach((button) => button.addEventListener('click', () => toast(button.dataset.toast)));
 
 let breathing = false;
 $('#breathButton').addEventListener('click', () => { breathing = !breathing; $('#breathOrb').classList.toggle('active', breathing); $('#breathButton').textContent = breathing ? '호흡 멈추기' : '호흡 시작'; $('#breathStatus').textContent = breathing ? '4초 들이마시고 6초 내쉬기' : '준비됨'; });
 let audioContext;
 let musicPlaying = false;
-$('#musicButton').addEventListener('click', () => { musicPlaying = !musicPlaying; $('#musicButton').textContent = musicPlaying ? 'Ⅱ' : '▶'; toast(musicPlaying ? '릴랙스 사운드를 재생 중이에요.' : '릴랙스 사운드를 멈췄어요.'); if (musicPlaying) startTone(); else stopTone(); });
+$('#musicButton').addEventListener('click', () => { musicPlaying = !musicPlaying; $('#musicButton').textContent = musicPlaying ? 'Ⅱ' : '▶'; toast(musicPlaying ? 'YouTube 릴랙스 음악을 재생 중이에요.' : '릴랙스 음악을 멈췄어요.'); if (musicPlaying) startYoutubeMusic(); else stopYoutubeMusic(); });
 function startTone(){ try { audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)(); const osc = audioContext.createOscillator(); const gain = audioContext.createGain(); osc.frequency.value = 220; gain.gain.value = .025; osc.connect(gain).connect(audioContext.destination); osc.start(); window.relaxOscillator = osc; } catch(e) { toast('브라우저에서 오디오 재생을 허용해 주세요.'); } }
 function stopTone(){ if(window.relaxOscillator){ window.relaxOscillator.stop(); window.relaxOscillator = null; } }
+function startYoutubeMusic(){ const embed = $('#musicEmbed'); if(embed) embed.innerHTML = '<iframe src="https://www.youtube.com/embed/KYC99Ev2sz4?autoplay=1&rel=0" title="차분한 호흡과 릴랙스 음악" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'; }
+function stopYoutubeMusic(){ const embed = $('#musicEmbed'); if(embed) embed.innerHTML = ''; }
 
-$('#locateButton').addEventListener('click', () => { $('#statusText').textContent = '현재 위치 확인 중'; if (!navigator.geolocation) return fakeLocate(); navigator.geolocation.getCurrentPosition((position) => { currentCoords = position.coords; $('#statusText').textContent = '현재 위치 확인 완료'; $('#locationHint').textContent = `위치 확인 완료 · ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`; loadNaverMap(position.coords); searchNearbyRestrooms(position.coords); }, () => fakeLocate(), { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }); });
+function locateAndSearch(){ $('#statusText').textContent = '현재 위치 확인 중'; if (!navigator.geolocation) return fakeLocate(); navigator.geolocation.getCurrentPosition((position) => { currentCoords = position.coords; $('#statusText').textContent = '현재 위치 확인 완료'; $('#locationHint').textContent = `위치 확인 완료 · ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`; loadNaverMap(position.coords); searchNearbyRestrooms(position.coords); }, () => fakeLocate(), { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }); }
 function fakeLocate(){ $('#statusText').textContent = '위치 권한이 필요해요'; $('#locationHint').textContent = '브라우저 위치 권한을 허용하면 실제 주변 화장실을 검색합니다.'; toast('위치 권한을 허용해 주세요.'); }
 
 async function searchNearbyRestrooms(coords, refreshing = false) {

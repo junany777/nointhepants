@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./overrides.css" />
+  <link rel="stylesheet" href="./functional-overrides.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -29,7 +30,7 @@
         </div>
 
         <section class="hero-map panel">
-          <div class="section-heading"><div><p class="eyebrow">NEARBY RESTROOMS</p><h2>내 위치로 화장실 찾기</h2></div><div class="map-actions"><span class="live-tag"><span class="pulse-dot"></span> LIVE</span><button class="small-button" id="refreshButton">↻ 새로고침</button></div></div>
+          <div class="section-heading"><div><p class="eyebrow">NEARBY RESTROOMS</p><h2>내 위치로 화장실 찾기</h2></div><div class="map-actions"><span class="live-tag"><span class="pulse-dot"></span> LIVE</span><button class="small-button" id="refreshButton">↻ 내 위치로 찾기</button></div></div>
           <div class="map-layout">
             <div class="map-frame" id="mapFrame">
               <div class="map-fallback" id="mapFallback"><div class="map-grid-lines"></div><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-water"></div><div class="map-label label-1">시청</div><div class="map-label label-2">중앙공원</div><div class="map-label label-3">문화거리</div><div class="user-pin"><span></span><small>현재 위치</small></div><button class="toilet-pin pin-1" data-name="시청역 2번 출구 화장실"><span>🚻</span></button><button class="toilet-pin pin-2" data-name="중앙공원 공중화장실"><span>🚻</span></button><button class="toilet-pin pin-3" data-name="편의점 · 24시간"><span>🚻</span></button><div class="map-note">네이버 지도 연결 대기 · 데모 화면</div></div>
@@ -42,12 +43,12 @@
       </section>
 
       <section class="relief-section">
-        <div class="section-heading"><div><p class="eyebrow">EMERGENCY CARE KIT</p><h2>화장실을 찾는 동안 이렇게 해보세요</h2></div><span class="step-count">총 4단계</span></div>
+        <div class="section-heading"><div><p class="eyebrow">EMERGENCY CARE KIT</p><h2>화장실 찾는 동안 대처방법</h2></div><span class="step-count">총 4단계</span></div>
         <div class="relief-grid">
-          <article class="relief-card breathing-relief breathing-card"><div class="card-top"><span class="step-number">01</span><span class="tag yellow-tag">심호흡</span></div><div class="breath-orb" id="breathOrb"><span>4초<br><small>들이마시기</small></span></div><h3>숨을 천천히 고르기</h3><p>코로 4초 들이마시고 입으로 6초 내쉬며 복부 긴장을 낮춰보세요.</p><div class="breath-controls"><button id="breathButton">호흡 시작</button><span id="breathStatus">준비됨</span></div></article>
-          <article class="relief-card pressure-card"><div class="card-top"><span class="step-number">02</span><span class="tag mint">지압법</span></div><div class="illustration pressure-illustration"><div class="hand"><i class="thumb"></i><i class="press-dot"></i></div><div class="wrist-line"></div></div><h3>손목 안쪽을 눌러요</h3><p>손목 주름에서 손가락 3마디 아래를 엄지로 30초간 눌러주세요. 양쪽 번갈아 3회.</p><button class="text-button" data-toast="손목 안쪽 지압 위치를 강조했어요">위치 다시 보기 ↗</button></article>
-          <article class="relief-card posture-card"><div class="card-top"><span class="step-number">03</span><span class="tag lavender">올바른 자세</span></div><div class="illustration posture-illustration"><div class="person-head"></div><div class="person-body"></div><div class="person-knee"></div><div class="posture-arrow">↘</div></div><h3>상체를 세우고 이동</h3><p>배를 접듯 웅크리기보다 상체를 세우고 보폭을 줄여 천천히 이동하세요.</p><button class="text-button" data-toast="상체를 세우고 보폭을 줄여 이동하세요">자세 체크 ↗</button></article>
-          <article class="relief-card music-card"><div class="card-top"><span class="step-number">04</span><span class="tag peach">음악재생</span></div><div class="illustration music-illustration"><div class="vinyl"><span>♪</span></div><div class="music-wave"><i></i><i></i><i></i><i></i><i></i></div></div><h3>릴랙스 음악 재생</h3><p>잔잔한 리듬에 맞춰 천천히 숨을 고르며 화장실로 이동하세요.</p><div class="audio-player"><button id="musicButton" aria-label="릴랙스 음악 재생">▶</button><div><strong>slow steps</strong><small>ambient breathing</small></div><span class="equalizer"><i></i><i></i><i></i></span></div></article>
+          <article class="relief-card breathing-relief breathing-card"><div class="card-top"><span class="step-number">01</span><span class="tag yellow-tag">심호흡 유도</span></div><div class="guide-illustration"><img src="./assets/breathing-guide.png" alt="사람이 편안하게 앉아 심호흡하는 모습"><div class="breath-count"><b>4초</b> 들이마시기 <span>→</span> <b>6초</b> 내쉬기</div></div><h3>사람처럼 따라 하는 호흡</h3><p>코로 4초 들이마시고, 입으로 6초 내쉬며 그림의 움직임을 따라 해보세요.</p><div class="breath-controls"><button id="breathButton">호흡 시작</button><span id="breathStatus">준비됨</span></div></article>
+          <article class="relief-card pressure-card"><div class="card-top"><span class="step-number">02</span><span class="tag mint">지압법</span></div><div class="guide-illustration pressure-guide"><img src="./assets/acupressure-guide.png" alt="손목 안쪽 P6 내관 지압 위치 안내 그림"><span class="guide-badge">P6 · 내관</span></div><h3>손목 안쪽 내관 지압</h3><p>손목 주름에서 손가락 3마디 아래, 두 힘줄 사이를 엄지로 부드럽게 눌러주세요.</p><button class="text-button" data-toast="P6 내관 위치를 30초간 부드럽게 눌러보세요">위치 다시 보기 ↗</button></article>
+          <article class="relief-card posture-card"><div class="card-top"><span class="step-number">03</span><span class="tag lavender">올바른 자세</span></div><div class="guide-illustration posture-guide"><img src="./assets/upright-posture-guide.png" alt="어깨와 골반을 세운 올바른 보행 자세 안내 그림"><span class="guide-badge">머리 · 어깨 · 골반 일직선</span></div><h3>몸을 세우고 천천히</h3><p>어깨를 편안히 내리고 머리·어깨·골반을 세운 채 보폭을 줄여 이동하세요.</p><button class="text-button" data-toast="상체를 세우고 보폭을 줄여 이동하세요">자세 체크 ↗</button></article>
+          <article class="relief-card music-card"><div class="card-top"><span class="step-number">04</span><span class="tag peach">음악재생</span></div><div class="illustration music-illustration"><div class="vinyl"><span>♪</span></div><div class="music-wave"><i></i><i></i><i></i><i></i><i></i></div></div><h3>YouTube 안정 음악</h3><p>재생 버튼을 누르면 차분한 호흡·릴랙스 음악이 바로 시작됩니다.</p><div class="audio-player"><button id="musicButton" aria-label="YouTube 릴랙스 음악 재생">▶</button><div><strong>calm breathing music</strong><small>YouTube · 4–6 breathing</small></div><span class="equalizer"><i></i><i></i><i></i></span></div><div class="music-embed" id="musicEmbed"></div></article>
         </div>
       </section>
 
