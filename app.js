@@ -12,7 +12,7 @@ function selectPlace(name, item) { document.querySelectorAll('.restroom-item').f
 function bindRestroomInteractions() { document.querySelectorAll('.restroom-item').forEach((item) => item.addEventListener('click', () => selectPlace(item.dataset.place, item))); document.querySelectorAll('.toilet-pin').forEach((pin) => pin.addEventListener('click', () => { selectedPlace = pin.dataset.name; toast(`${selectedPlace} · 길 안내 준비 완료`); })); }
 bindRestroomInteractions();
 
-$('#routeButton').addEventListener('click', () => { if (!selectedPlace) return toast('먼저 화장실을 선택해 주세요.'); toast(`${selectedPlace}까지 길 안내를 시작합니다.`); });
+$('#routeButton').addEventListener('click', openNaverRestroomSearch);
 function openNaverRestroomSearch(){ window.open('https://map.naver.com/p/search/%ED%99%94%EC%9E%A5%EC%8B%A4', '_blank', 'noopener,noreferrer'); toast('네이버 지도에서 주변 화장실 검색을 열었어요.'); }
 $('#refreshButton').addEventListener('click', openNaverRestroomSearch);
 $('#mapLaunchButton')?.addEventListener('click', openNaverRestroomSearch);

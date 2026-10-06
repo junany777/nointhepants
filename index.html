@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./overrides.css" />
   <link rel="stylesheet" href="./functional-overrides.css" />
   <link rel="stylesheet" href="./naver-web.css" />
+  <link rel="stylesheet" href="./instruction.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -36,9 +37,9 @@
             <div class="map-frame" id="mapFrame">
               <div class="map-fallback" id="mapFallback"><div class="map-grid-lines"></div><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-water"></div><div class="map-label label-1">시청</div><div class="map-label label-2">중앙공원</div><div class="map-label label-3">문화거리</div><div class="user-pin"><span></span><small>현재 위치</small></div><button class="toilet-pin pin-1" data-name="시청역 2번 출구 화장실"><span>🚻</span></button><button class="toilet-pin pin-2" data-name="중앙공원 공중화장실"><span>🚻</span></button><button class="toilet-pin pin-3" data-name="편의점 · 24시간"><span>🚻</span></button><div class="map-note">버튼을 누르면 네이버 지도 화장실 검색으로 이동합니다</div><button class="map-launch" id="mapLaunchButton">네이버 지도에서 주변 화장실 보기 ↗</button></div>
               <div id="naverMap" class="naver-map" aria-label="네이버 지도"></div>
-              <div class="map-legend"><span><i class="legend-user"></i> 내 위치</span><span><i class="legend-toilet">🚻</i> 화장실</span></div>
+              <div class="map-legend"><span><i class="legend-user"></i> 현재 위치</span><span>네이버 지도 검색으로 이동</span></div>
             </div>
-            <aside class="restroom-list" aria-label="가까운 화장실 목록"><div class="list-summary"><strong id="resultCount">3곳</strong><span>현재 위치 기준 추천</span></div><article class="restroom-item selected" data-place="시청역 2번 출구 화장실"><div class="place-icon">🚻</div><div class="place-info"><strong>시청역 2번 출구</strong><span>도보 2분 · 160m</span><small>24시간 · 남/여 구분 · 무료</small></div><b>가장 가까움</b></article><article class="restroom-item" data-place="중앙공원 공중화장실"><div class="place-icon">🌳</div><div class="place-info"><strong>중앙공원 공중화장실</strong><span>도보 5분 · 380m</span><small>06:00–22:00 · 장애인 편의</small></div></article><article class="restroom-item" data-place="편의점 · 24시간"><div class="place-icon">🏪</div><div class="place-info"><strong>CU 중앙로점</strong><span>도보 6분 · 480m</span><small>24시간 · 직원에게 문의</small></div></article><button class="route-button" id="routeButton">선택 장소로 길 안내 시작 →</button></aside>
+            <aside class="restroom-list naver-instructions" aria-label="네이버 지도 검색 안내"><div class="instruction-kicker">NAVER MAP · READY</div><h3>주변 화장실은<br><em>네이버 지도</em>에서 확인해요</h3><p>이 화면은 검색 준비 화면입니다. 아래 순서대로 바로 찾을 수 있어요.</p><div class="instruction-step"><b>01</b><span><strong>네이버 지도 열기</strong><small>화장실 검색 화면으로 이동</small></span></div><div class="instruction-step"><b>02</b><span><strong>내 위치 허용</strong><small>현재 위치 주변 결과 확인</small></span></div><div class="instruction-step"><b>03</b><span><strong>가장 가까운 곳 선택</strong><small>길찾기까지 네이버 지도에서 진행</small></span></div><button class="route-button" id="routeButton">네이버 지도에서 시작하기 ↗</button></aside>
           </div>
         </section>
       </section>
