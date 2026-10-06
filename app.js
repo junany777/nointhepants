@@ -19,7 +19,7 @@ $('#safetyButton').addEventListener('click', openNaverHelpSearch);
 document.querySelectorAll('.text-button').forEach((button) => button.addEventListener('click', () => toast(button.dataset.toast)));
 
 let breathing = false;
-$('#breathButton').addEventListener('click', () => { breathing = !breathing; $('#breathOrb').classList.toggle('active', breathing); $('#breathButton').textContent = breathing ? '호흡 멈추기' : '호흡 시작'; $('#breathStatus').textContent = breathing ? '4초 들이마시고 6초 내쉬기' : '준비됨'; });
+$('#breathButton').addEventListener('click', () => { breathing = !breathing; $('#breathGuide').classList.toggle('active', breathing); $('#breathButton').textContent = breathing ? '호흡 멈추기' : '호흡 시작'; $('#breathStatus').textContent = breathing ? '4초 들이마시고 6초 내쉬기' : '준비됨'; });
 let audioContext;
 let musicPlaying = false;
 $('#musicButton').addEventListener('click', () => { musicPlaying = !musicPlaying; $('#musicButton').textContent = musicPlaying ? 'Ⅱ' : '▶'; toast(musicPlaying ? 'YouTube 릴랙스 음악을 재생 중이에요.' : '릴랙스 음악을 멈췄어요.'); if (musicPlaying) startYoutubeMusic(); else stopYoutubeMusic(); });
