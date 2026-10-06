@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./overrides.css" />
   <link rel="stylesheet" href="./functional-overrides.css" />
+  <link rel="stylesheet" href="./naver-web.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -30,10 +31,10 @@
         </div>
 
         <section class="hero-map panel">
-          <div class="section-heading"><div><p class="eyebrow">NEARBY RESTROOMS</p><h2>내 위치로 화장실 찾기</h2></div><div class="map-actions"><span class="live-tag"><span class="pulse-dot"></span> LIVE</span><button class="small-button" id="refreshButton">↻ 내 위치로 찾기</button></div></div>
+          <div class="section-heading"><div><p class="eyebrow">NAVER MAP SEARCH</p><h2>네이버 지도에서 화장실 찾기</h2></div><div class="map-actions"><span class="live-tag"><span class="pulse-dot"></span> NAVER</span><button class="small-button" id="refreshButton">↗ 주변 화장실 열기</button></div></div>
           <div class="map-layout">
             <div class="map-frame" id="mapFrame">
-              <div class="map-fallback" id="mapFallback"><div class="map-grid-lines"></div><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-water"></div><div class="map-label label-1">시청</div><div class="map-label label-2">중앙공원</div><div class="map-label label-3">문화거리</div><div class="user-pin"><span></span><small>현재 위치</small></div><button class="toilet-pin pin-1" data-name="시청역 2번 출구 화장실"><span>🚻</span></button><button class="toilet-pin pin-2" data-name="중앙공원 공중화장실"><span>🚻</span></button><button class="toilet-pin pin-3" data-name="편의점 · 24시간"><span>🚻</span></button><div class="map-note">네이버 지도 연결 대기 · 데모 화면</div></div>
+              <div class="map-fallback" id="mapFallback"><div class="map-grid-lines"></div><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-water"></div><div class="map-label label-1">시청</div><div class="map-label label-2">중앙공원</div><div class="map-label label-3">문화거리</div><div class="user-pin"><span></span><small>현재 위치</small></div><button class="toilet-pin pin-1" data-name="시청역 2번 출구 화장실"><span>🚻</span></button><button class="toilet-pin pin-2" data-name="중앙공원 공중화장실"><span>🚻</span></button><button class="toilet-pin pin-3" data-name="편의점 · 24시간"><span>🚻</span></button><div class="map-note">버튼을 누르면 네이버 지도 화장실 검색으로 이동합니다</div><button class="map-launch" id="mapLaunchButton">네이버 지도에서 주변 화장실 보기 ↗</button></div>
               <div id="naverMap" class="naver-map" aria-label="네이버 지도"></div>
               <div class="map-legend"><span><i class="legend-user"></i> 내 위치</span><span><i class="legend-toilet">🚻</i> 화장실</span></div>
             </div>
@@ -57,6 +58,6 @@
     <footer><span>NO IN THE PANTS</span><span>당신의 평온한 5분을 위해</span></footer>
   </div>
   <div class="toast" id="toast" role="status"></div>
-  <script src="./app.js?v=9dfd05e"></script>
+  <script src="./app.js?v=naver-web-search-1"></script>
 </body>
 </html>

@@ -13,7 +13,9 @@ function bindRestroomInteractions() { document.querySelectorAll('.restroom-item'
 bindRestroomInteractions();
 
 $('#routeButton').addEventListener('click', () => { if (!selectedPlace) return toast('먼저 화장실을 선택해 주세요.'); toast(`${selectedPlace}까지 길 안내를 시작합니다.`); });
-$('#refreshButton').addEventListener('click', locateAndSearch);
+function openNaverRestroomSearch(){ window.open('https://map.naver.com/p/search/%ED%99%94%EC%9E%A5%EC%8B%A4', '_blank', 'noopener,noreferrer'); toast('네이버 지도에서 주변 화장실 검색을 열었어요.'); }
+$('#refreshButton').addEventListener('click', openNaverRestroomSearch);
+$('#mapLaunchButton')?.addEventListener('click', openNaverRestroomSearch);
 document.querySelectorAll('.text-button').forEach((button) => button.addEventListener('click', () => toast(button.dataset.toast)));
 
 let breathing = false;
@@ -50,5 +52,3 @@ function renderRestrooms(places) { const list = $('.restroom-list'); $('#resultC
 function loadNaverMap(coords){ if(window.naver && window.naver.maps) return renderNaverMap(coords); const clientId = new URLSearchParams(location.search).get('naverClientId') || NAVER_CLIENT_ID; if(!clientId) return; const script = document.createElement('script'); script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${encodeURIComponent(clientId)}`; script.onload = () => renderNaverMap(coords); script.onerror = () => toast('네이버 지도 SDK를 불러오지 못했어요. Client ID의 웹 서비스 URL 등록을 확인해 주세요.'); document.head.appendChild(script); }
 function renderNaverMap(coords){ if(!window.naver || !window.naver.maps) return; const center = new naver.maps.LatLng(coords.latitude, coords.longitude); $('#mapFallback').style.display='none'; $('#naverMap').style.display='block'; if(naverMap){ naverMap.setCenter(center); return; } naverMap = new naver.maps.Map('naverMap', { center, zoom: 16 }); new naver.maps.Marker({ position: center, map: naverMap }); if (window.pendingPlaces) drawNaverMarkers(window.pendingPlaces); }
 function drawNaverMarkers(places){ window.pendingPlaces = places; if(!naverMap) return; naverMarkers.forEach((marker) => marker.setMap(null)); naverMarkers = []; places.forEach((place) => { const marker = new naver.maps.Marker({ position: new naver.maps.LatLng(place.lat, place.lon), map: naverMap, title: place.name }); naver.maps.Event.addListener(marker, 'click', () => toast(place.name)); naverMarkers.push(marker); }); }
-
-loadNaverMap(DEFAULT_COORDS);
